@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="es">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Seminario de actualización en OpenStack</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+	<section>
+	  <h2>Seminario de actualización en OpenStack</h2>
+	  <p><a href="http://albertomolina.wordpress.com">Alberto Molina Coballes</a></p>
+	  <p>IES Gonzalo Nazareno</p>
+	  <p>
+	    <a href="http://bn-cloud.com/">
+	      <img src="img/logohome_0_0.png" width="100px" class="plain"/></a>
+	  </p>
+	  <p><small>Sevilla, 21 de Junio de 2016</small></p>
+	  <p><small>Theme by: <a href="http://lab.hakim.se/reveal-js/#/">reveal.js</a></small></p>
+	  
+	</section>
+	<!-- <section> -->
+	<!--   <h3>Índice</h3> -->
+	<!--   <ul> -->
+	<!--     <li>Evolución de la infraestructura</li> -->
+	<!--     <li>De la nube pública a la privada</li> -->
+	<!--     <li>Software libre para IaaS</li> -->
+	<!--     <li>¿Por qué OpenStack?</li> -->
+	<!--     <li>Componentes y arquitectura de OpenStack</li> -->
+	<!--     <li>Demo de OpenStack</li> -->
+	<!--     <li>Referencias: -->
+	<!--       <ul> -->
+	<!-- 	<li>OpenStack Doc: docs.openstack.org</li> -->
+	<!-- 	<li><a href="http://iesgn.github.io/emergya/">http://iesgn.github.io/emergya/</a></li> -->
+	<!--       </ul> -->
+	<!--   </ul> -->
+	<!-- </section> -->
+	<section>
+	  <section>
+	    <h3 >Evolución de la infraestructura</h3>
+	  </section>
+	  <section>
+	    <h3>Evolución de la infraestructura</h3>
+	    <h4>¿Qué es infrastructura?</h4>
+	    <p>Procesadores, redes y equipos para almacenamiento de datos</p>
+	    <h4>Evolución</h4>
+	    <ol>
+	      <li>Servidores físicos</li>
+	      <li>Máquinas virtuales</li>
+	      <li>Infraestructura en nube</li>
+	    </ol>
+	  </section>
+	  <section>
+	    <h3>Infraestructura tradicional</h3>
+	    <ul>
+	      <li>Adquisición de equipos</li>
+	      <li>Montaje físico</li>
+	      <li>Conexión a red</li>
+	      <li>Instalación "manual" y configuración del SO</li>
+	      <li>Almacenamiento SAN o NAS</li>
+	      <li>Infraestructua estática</li>
+	      <li>Se mantienen las configuraciones durante años</li>
+	      <li>El usuario NO gestiona la infraestructura</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Máquinas virtuales</h3>
+	    <ul>
+	      <li>Varias MVs por cada nodo físico</li>
+	      <li>MVs gestionadas por el hipervisor</li>
+	      <li>MVs conectadas a través de redes virtuales</li>
+	      <li>Sin cambios significativos en almacenamiento</li>
+	      <li>Gestión similar a los servidores físicos</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Infraestructura en nube</h3>
+	    <ul>
+	      <li>Máquinas virtuales</li>
+	      <li>Virtualización de redes</li>
+	      <li>Virtualización del almacenamiento</li>
+	      <li>Agrupamiento de recursos</li>
+	      <li>Infraestructura dinámica</li>
+	      <li>Configuración automática</li>
+	      <li>El usuario SÍ gestiona su infraestructura</li>
+	    </ul>
+	  </section>
+	  <!-- <section> -->
+	  <!--   <a href="img/esquema-iaas.png"><img src="img/esquema-iaas.png" -->
+	  <!--   alt="esquema IaaS" class="plain" /></a> -->
+	  <!-- </section> -->
+	</section>
+	
+	<section>
+	  <section>
+	    <h3 >De la nube pública a la privada</h3>
+	  </section>
+	  <section>
+	    <h3>The NIST Definition: Características esenciales</h3>
+	    <ul>
+	      <li>Servicio bajo demanda</li>
+	      <li>Acceso por red</li>
+	      <li>Agrupamiento de recursos</li>
+	      <li>Elasticidad</li>
+	      <li>Pago por uso</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>The NIST Definition: Modelos de despliegue</h3>
+	    <ul>
+	      <li>Nube pública</li>
+	      <li>Nube privada</li>
+	      <li>Nube híbrida</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>The NIST Definition: ... como servicio</h3>
+	    <ul>
+	      <li>Software as a Service (SaaS)</li>
+	      <li>Platform as a Service (PaaS)</li>
+	      <li>Infrastructure as a Service (IaaS)</li>
+	    </ul>
+	    <br />
+	    <ul>
+	      <li>Referencia:</li>
+	    </ul>
+	    <p><a href="http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf">The NIST Definition of Cloud Computing</a></p>
+	  </section>
+	  <section>
+	    <a href="http://mschnlnine.vo.llnwd.net/d1/inetpub/kevinremde/Images/679669067395_DBE9/image_thumb.png"><img src="http://mschnlnine.vo.llnwd.net/d1/inetpub/kevinremde/Images/679669067395_DBE9/image_thumb.png"
+	    alt="iaas-paas-saas" class="plain" /></a>
+	    <p><small><a href="http://blogs.technet.com/b/kevinremde/archive/2011/04/03/saas-paas-and-iaas-oh-my-quot-cloudy-april-quot-part-3.aspx">Kevin Remde: SaaS, PaaS, and IaaS.. Oh my!</a></small></p>
+	  </section>
+	  <section>
+	    <h3>¿Serverless?</h3>
+	    <p><img src="img/serverless.png" /></p>
+	    <p><small><a href="https://read.acloud.guru/iaas-paas-serverless-the-next-big-deal-in-cloud-computing-34b8198c98a2#.c2xdbka90">Fuente:
+		  A brief history of cloud compute: IAAS, PAAS, serverless.</a></small></p>
+	  </section>
+	  <section>
+	    <h3>¿Por qué una nube privada?</h3>
+	    <ul>
+	      <li>El software de gestión de nubes se está convirtiendo en un componente clave de los centros de datos</li>
+	      <li>Las nubes públicas están bien, pero ...</li>
+		<ul>
+		  <li>Privacidad, seguridad, control de los datos</li>
+		  <li>Vendor lock-in</li>
+		  <li>Personalización</li>
+		  <li>¿Rendimiento?</li>
+		  <li>¿Coste?</li>
+		</ul>
+	  </section>
+	  <section>
+	    <h3>Infrastructure as a Service</h3>
+	    <ul>
+	      <li>Nube pública IaaS: AWS, GCE y Azure. ¿Hay espacio para alguien más? ¿es esto lo que queremos?</li>
+	      <li>Nube privada: Plataformas de software libre</li>
+	    </ul>
+	  </section>
+	</section>
+	
+	<section>
+	  <section>
+	    <h3 >IaaS con software libre</h3>
+	  </section>
+	  <section>
+	    <h3>CloudStack</h3>
+	    <ul>
+	      <li>Inicialmente cloud.com</li>
+	      <li>Comprado por citrix en 2011</li>
+	      <li>Donado a la Apache Software Foundation en 2012</li>
+	      <li>Focalizado en la compatibilidad con AWS</li>
+	      <li>Ene 2016: Citrix vende CloudPlatform y CloudPortal a Accelerite</li>
+	      <li><a href="http://cloudstack.apache.org/">http://cloudstack.apache.org/</a></li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Eucalyptus</h3>
+	    <ul>
+	      <li>El proyecto más antiguo</li>
+	      <li>Focalizado en la compatibilidad con AWS</li>
+	      <li>Inicialmente licencia mixta (Open core)</li>
+	      <li>euca2ools: CLI compatible con AWS (libre)</li>
+	      <li>Desarrollado principalmente por Eucalyptus Systems</li>
+	      <li>En Sept. 2014 HP compra Eucalyptus Systems</li>
+	      <li><a href="http://www8.hp.com/us/en/cloud/helion-eucalyptus-overview.html">http://www8.hp.com/us/en/cloud/helion-eucalyptus-overview.html</a></li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>OpenNebula</h3>
+	    <ul>
+	      <li>Data Center Virtualization Software</li>
+	      <li>Se postula como rival de VMware vCloud</li>
+	      <li>Compatible con AWS EC2 API</li>
+	      <li>OpenNebula Marketplace</li>
+	      <li><a href="http://opennebula.org/">http://opennebula.org/</a></li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Algunos datos sobre estos proyectos</h3>
+	    <p>Charla de Bitergia en el OpenStack Summit:</p>
+	    <ul>
+	      <li><a href="https://speakerdeck.com/jgbarah/the-numbers-of-the-open-cloud-tokyo-edition">https://speakerdeck.com/jgbarah/the-numbers-of-the-open-cloud-tokyo-edition</a></li>
+	      <li><a href="https://www.youtube.com/watch?v=jipTERrdt9E">https://www.youtube.com/watch?v=jipTERrdt9E</a></li>
+	    </ul>
+	  </section>
+	</section>
+
+	<section>
+	  <section>
+	    <h3>El proyecto OpenStack</h3>
+	  </section>
+	  <section>
+	    <h3>OpenStack</h3>
+	    <img src="img/openstack-software-diagram.png"
+	    class="plain" />
+		<blockquote>Open source software for creating private
+		  and public clouds</blockquote>
+	  </section>
+	  <section>
+	    <h3>Versiones de OpenStack</h3>
+	    <p><a href="http://releases.openstack.org/">OpenStack Releases</a></p>		
+	    <!-- <table> -->
+	    <!--   <col style="width: 34%" /> -->
+	    <!--   <col style="width: 16%" /> -->
+	    <!--   <col style="width: 34%" /> -->
+	    <!--   <col style="width: 16%" /> -->
+	    <!--   <tr> -->
+	    <!-- 	<th>Release</th> -->
+	    <!-- 	<th>Date</th> -->
+	    <!-- 	<th>Release</th> -->
+	    <!-- 	<th>Date</th> -->
+	    <!--   </tr> -->
+	    <!--   <tr> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Austin">Austin</a></td> -->
+	    <!-- 	<td>Oct'10</td> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Bexar">Bexar</a></td> -->
+	    <!-- 	<td>Feb'11</td> -->
+	    <!--   </tr> -->
+	    <!--   <tr> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Cactus">Cactus</a></td> -->
+	    <!-- 	<td>Apr'11</td> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Diablo">Diablo</a></td> -->
+	    <!-- 	<td>Sep'11</td> -->
+	    <!--   </tr> -->
+	    <!--   <tr> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Essex">Essex -->
+	    <!-- 	    (2012.1)</a></td> -->
+	    <!-- 	<td>Apr'12</td> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Folsom">Folsom -->
+	    <!-- 	    (2012.2)</a></td> -->
+	    <!-- 	<td>Oct'12</td> -->
+	    <!--   </tr> -->
+	    <!--   <tr> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Grizzly">Grizzly -->
+	    <!-- 	    (2013.1)</a></td> -->
+	    <!-- 	<td>Apr'13</td> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Havana">Havana -->
+	    <!-- 	    (2013.2)</a></td> -->
+	    <!-- 	<td>Oct'13</td> -->
+	    <!--   </tr> -->
+	    <!--   <tr> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Icehouse">Icehouse -->
+	    <!-- 	    (2014.1)</a></td> -->
+	    <!-- 	<td>Apr'14</td> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Juno">Juno -->
+	    <!-- 	    (2014.2)</a></td> -->
+	    <!-- 	<td>Oct'14</td> -->
+	    <!--   </tr> -->
+	    <!--   <tr> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Kilo">Kilo -->
+	    <!-- 	    (2015.1)</a></td> -->
+	    <!-- 	<td>Apr'15</td> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Liberty">Liberty</a></td> -->
+	    <!-- 	<td>Oct'15</td> -->
+	    <!--   </tr> -->
+	    <!--   <tr> -->
+	    <!-- 	<td><a href="https://wiki.openstack.org/wiki/ReleaseNotes/Mitaka">Mitaka</a></td> -->
+	    <!-- 	<td>Apr'16</td> -->
+	    <!-- 	<td>Newton</td> -->
+	    <!-- 	<td>Oct'16</td> -->
+	    <!--   </tr> -->
+	    <!-- </table> -->
+	    <!-- <p><small><a href="https://wiki.openstack.org/wiki/Releases">https://wiki.openstack.org/wiki/Releases</a></small></p> -->
+	  </section>
+	  <section>
+	    <h3>Desarrollo colaborativo</h3>
+	    <ul>
+	      <li> <a href="http://bitergia.com/">Bitergia</a> realiza diferentes análisis sobre el desarrollo de OpenStack</li>
+	      <li><a href="http://blog.bitergia.com/2015/04/30/kilo-the-new-openstack-release/">Kilo:
+		  the new OpenStack release</a></li>
+	      <li><a href="http://activity.openstack.org/dash/browser/">OpenStack
+		  activity dashboard</a></li>
+	      <li><a href="https://6d8316ac574a2a54a69bb17a7d161ed6.us-east-1.aws.found.io/#/dashboard/OpenStack-Git-Activity-v2">OpenStack code contributions dashboard</a></li>
+	  </section>
+	  <section>
+	    <h3>OpenStack Foundation</h3>
+	    <ul>
+	      <li>Fundada para promocionar el desarrollo, distribución y adopción de OpenStack</li>
+	      <li>Abierta a cualquiera</li>
+	      <li>Individual
+	      membership: <a href="https://www.openstack.org/join/register/?membership-type=community">Community
+	      member</a>
+	      o <a href="https://www.openstack.org/join/register/?membership-type=foundation">Foundation
+		  member</a></li>
+	      <li>Las empresas participan como Platinum members, Gold
+	      members, Corporate Sponsors o Supporting Organizations</li>
+	    </ul>
+	    <small><p><a href="https://www.openstack.org/join/">Join The OpenStack Foundation</a></p>
+	      <p><a href="www.openstack.org/foundation/companies/">Companies
+		  Supporting The OpenStack Foundation</a></p>
+	      <p><a href="https://www.openstack.org/legal/">OpenStack Legal Documents</a></p></small>
+	  </section>
+	  <section>
+	    <h3>OpenStack Foundation. Organización</h3>
+	    <ul>
+	      <li><a href="https://www.openstack.org/foundation/tech-committee/">Technical
+	            Commitee (13 members elected by active developers)</li>
+	      <li><a href="https://www.openstack.org/foundation/board-of-directors/">Board
+		  of directors: Strategic and financial oversight. 8
+		  platinum members, 8 gold members and 8 individual
+		  members</li>
+	      <li><a href="https://www.openstack.org/foundation/user-committee/">User
+	      commitee</a></li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Principios de OpenStack</h3>
+	    <ul>
+	      <li>Código disponible bajo la licencia libre Apache 2.0</li>
+	      <li>Debe soportar todos los hipervisores disponibles</li>
+	      <li>Uso mediante APIs REST y formato de imagen abierto</li>
+	      <li>Proceso de diseño abierto:
+		<ul>
+		  <li>Blueprints</li>
+		  <li>Repositorios públicos (github)</li>
+		</ul>
+	      <li>Compromiso de adoptar estándares abiertos</li>
+	      <li>Comunidad abierta y transparente</li>
+	      <a href="http://www.openstack.org/assets/openstack-welcome-guide.pdf">OpenStack Community. Welcome Guide</a>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>OpenStack Summits</h3>
+	    <ul>
+	      <li>Se organizan cada 6 meses con miles de participantes:
+		<ul>
+		  <li>The OpenStack Conference</li>
+		  <li>The OpenStack Design Summit</li>
+		</ul>
+	      <li><a href="https://www.openstack.org/videos/">Sesiones disponibles</a></li>
+	      <li>Próximo summit: Octubre 2016 en Barcelona</li>
+	    </ul>
+	    <p><a href="https://www.openstack.org/summit/">OpenStack
+	        summits</a></p>
+	  </section>
+	  <section>
+	    <h3>¿Por qué OpenStack?</h3>
+	    <ul>
+	      <li>Porque quiero gestionar el software para IaaS</li>
+	      <li>Software libre</li>
+	      <li>Proyecto estable</li>
+	      <li>Atrae gran cantidad de innovación</li>
+	      <li>Gran variedad de usos, escenarios y mucha funcionalidad</li>
+	      <li>Funciona en hardware convencional</li>
+	    </ul>
+	  </section>
+	</section>
+	<section>
+	  <section>
+	    <h3>Estructura de OpenStack</h3>
+	  </section>
+	  <section>
+	    <h3>Integrated release</h3>
+	    <ul>
+	      <li>Modelo de desarrollo hasta Kilo</li>
+	      <li>Proyectos oficiales</li>
+	      <li>Proyectos incubados</li>
+	      <li>Publicación coordinada: 201X.Y</li>
+	      <li>Madurez variable de cada componente</li>
+	      <li>Resto de ecosistema</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Big Tent</h3>
+	    <ul>
+	      <li>"Refactorizing the community"</li>
+	      <li>Enfoque más inclusivo</li>
+	      <li>Proyecto OpenStack si encaja en los objetivos y modelo de desarrollo y se pone bajo la supervisión del TC</li>
+	      <li><a href="http://governance.openstack.org/reference/projects/">OpenStack
+		  Project Teams</a></li>
+	      <li><a href="http://governance.openstack.org/reference/tags/">Tags</a></li>
+	    </ul>
+	    <small><p><a href="https://www.youtube.com/watch?v=TTe_bZtEKxo">The
+		  Big Tent - a look at the new OpenStack projects governance</a></p>
+	      <p><a href="https://github.com/openstack/governance/blob/master/resolutions/20141202-project-structure-reform-spec.rst">OpenStack project structure reform specification</a></p></small>
+	  </section>
+	  <section>
+	    <h3>Servicios de OpenStack</h3>
+	    <p><a href="https://www.openstack.org/software/project-navigator">OpenStack
+		Project Navigator</a></p>
+	  </section>
+	  <section>
+	    <h3>Módulos de OpenStack</h3>
+	    <ul>
+	      <li>Módulos independientes</li>
+	      <li>Escritos en python y disponibles en <a href="https://github.com/openstack/">Github</a></li>
+	      <li>Oslo: OpenStack common libraries</li>
+	      <li>Base de datos por componente</li>
+	      <li>Comunicación vía API RESTful</li>
+	      <li>AMQP</li>
+	      <li>Integrados con <a href="http://docs.openstack.org/developer/tempest/">tempest</a></li> 
+	      <li>Incluídos en <a href="http://docs.openstack.org/developer/devstack/">devstack</a></li>
+	    </ul>
+	  </section>
+	  <section>
+	    <p>Integrados en Kilo</p>
+	    <table>
+	      <col style="width: 20%" />
+	      <col style="width: 30%" />
+	      <col style="width: 20%" />
+	      <col style="width: 30%" />
+	      <tr>
+		<th>Name</th>
+		<th>Function</th>
+		<th>Name</th>
+		<th>Function</th>
+	      </tr>
+	      <tr>
+		  <td><a href="https://wiki.openstack.org/wiki/Nova">Nova</a></td>
+		  <td>Compute</td>
+		  <td><a href="https://wiki.openstack.org/wiki/Swift">Swift</a></td>
+		  <td>Object Storage</td>
+		</tr>
+		<tr>
+		  <td><a href="https://wiki.openstack.org/wiki/Keystone">Keystone</a></td>
+		  <td>Identity</td>
+		  <td><a href="https://wiki.openstack.org/wiki/Glance">Glance</a></td>
+		  <td>Image</td>
+		</tr>
+		<tr>
+		  <td><a href="https://wiki.openstack.org/wiki/Horizon">Horizon</a></td>
+		  <td>Dashboard</td>
+		  <td><a href="https://wiki.openstack.org/wiki/Cinder">Cinder</a></td>
+		  <td>Block Storage</td>
+		</tr>
+		<tr>
+		  <td><a href="https://wiki.openstack.org/wiki/Neutron">Neutron</a></td>
+		  <td>Networking</td>
+		  <td><a href="https://wiki.openstack.org/wiki/Heat">Heat</a></td>
+		  <td>Orchestration</td>
+		</tr>
+		<tr>
+		  <td><a href="https://wiki.openstack.org/wiki/Ceilometer">Ceilometer</a></td>
+		  <td>Telemetry</td>
+		  <td><a href="https://wiki.openstack.org/wiki/Ironic">Ironic</a></td>
+		  <td>Bare metal</td>
+		</tr>
+		<tr>
+		  <td><a href="https://wiki.openstack.org/wiki/Sahara">Sahara</a></td>
+		  <td>Hadoop, Spark</td>
+		  <td><a href="https://wiki.openstack.org/wiki/Ironic">Trove</a></td>
+		  <td>DBaaS</td>
+		</tr>
+	      </table>
+	    </section>
+	    <section>
+	      <p>Nuevos en Big Tent:</p>
+	      <table>
+		<col style="width: 20%" />
+		<col style="width: 30%" />
+		<col style="width: 20%" />
+		<col style="width: 30%" />
+		<tr>
+		  <th>Name</th>
+		  <th>Function</th>
+		  <th>Name</th>
+		  <th>Function</th>
+		</tr>
+		<tr>
+		  <td><a href="https://wiki.openstack.org/wiki/Magnum">Magnum</a></td>
+		  <td>Containers</td>
+		  <td><a href="https://wiki.openstack.org/wiki/Zaqar">Zaqar</a></td>
+		  <td>Messaging</td>
+		</tr>
+		<tr>
+		  <td><a href="https://wiki.openstack.org/wiki/Barbican">Barbican</a></td>
+		  <td>Key Mgmt.</td>
+		  <td><a href="https://wiki.openstack.org/wiki/Murano">Murano</a></td>
+		  <td>App Catalog</td>
+		</tr>
+		<tr>
+		  <td><a href="https://wiki.openstack.org/wiki/Manila">Manila</a></td>
+		  <td>Shared FS</td>
+		  <td><a href="https://wiki.openstack.org/wiki/Designate">Designate</a></td>
+		  <td>DNSaaS</td>
+		</tr>
+		<tr>
+		  <td>...</td>
+		  <td>...</td>
+		  <td>...</td>
+		  <td>...</td>
+		</tr>
+	      </table>
+	    </section>
+	    <section>
+	      <h3>Componentes de OpenStack</h3>
+	      <img src="img/openstack-components.jpg" class="plain" />
+	      <p><small><a href="http://www.cloudscaling.com/blog/openstack/vanilla-openstack-doesnt-exist-and-never-will/">Randy
+	      Bias - "Vanilla OpenStack" Doesn't Exist and Never Will</a></small></p>
+	    </section>
+	    <section>
+	      <h3>Arquitectura de OpenStack</h3>
+	      <p><a href="http://docs.openstack.org/mitaka/networking-guide/deploy.html">Deployment scenarios</a></p>
+	    </section>	  
+	</section>
+	<section>
+	  <section>
+	    <h3>Tecnologías subyacentes</h3>
+	    <p>OpenStack trata de ser neutral respecto a las tecnologías subyacentes</p>
+	  </section>
+	  <section>
+	    <h3>Virtualización</h3>
+	    <p><a href="https://wiki.openstack.org/wiki/HypervisorSupportMatrix">HypervisorSupportMatrix</a></p>
+	    <img src="img/NovaCILoopMay2015.png" class="plain"/>
+	  </section>
+	  <section>
+	    <h3>Virtualización de redes</h3>
+	    <ul>
+	      <li>Espacios de nombres de red</li>
+	      <li>iptables</li>
+	      <li>Plugins ml2:
+		<ul>
+		  <li>OpenvSwitch</li>
+		  <li>Nuage</li>
+		  <li>OpenContrail</li>
+		  <li>...</li>
+		</ul>
+	      </li>
+	      <li>SR-IOV</li>
+	      <li>LBaaS, VPNaaS, FWaaS</li>
+	      <li>IPv6</li>	      
+	  </section>
+	  <section>
+	    <h3>Virtualización de almacenamiento</h3>
+	    <ul>
+	      <li><a href="https://wiki.openstack.org/wiki/CinderSupportMatrix"> CinderSupportMatrix </a></li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Otras consideraciones</h3>
+	    <ul>
+	      <li>Arquitectura "Leaf/spine"</li>
+	      <li>Commodity hardware</li>
+	    </ul>
+	  </section>
+	</section>
+	<section>
+	  <section>
+	    <h3>Casos de uso</h3>
+	  </section>
+	  <section>
+	    <h3>Virtualización 2.0</h3>
+	    <ul>
+	      <li>Gestión ágil y automatizada de máquinas virtuales</li>
+	      <li>Mediante GUI, CLI o API</li>
+	      <li>Glance, Nova y Horizon</li>
+	      <li>El usuario puede gestionar su infraestructura</li>
+	      <li>Escenarios automáticos mediante plantillas (heat)</li>
+	      <li>Aplicaciones distribuidas y "nativas" cloud</li>
+	      <li>Regiones, zonas, agregados, celdas, afinidad/anti-afinidad, ...</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Almacenamiento de objetos</h3>
+	    <ul>
+	      <li>Usado ampliamente para el almacenamiento masivo en Internet</li>
+	      <li>API extremadamente simple</li>
+	      <li>Swift o Ceph</li>
+	      <li>Almacenamiento distribuido, con redundancia y muy escalable</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Almacenamiento de bloques</h3>
+	    <ul>
+	      <li>Equivale a una SAN</li>
+	      <li>Cinder</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Virtualización de redes</h3>
+	    <ul>
+	      <li>Virtualización completa de la red de un CPD</li>
+	      <li>SDN</li>
+	      <li>Software Defined Datacenter</li>
+	      <li>NFV</li>
+	      <li>Neutron</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Sistemas de ficheros compartidos</h3>
+	    <ul>
+	      <li>Manila</li>
+	      <li>Proyecto escindido de cinder</li>
+	      <li><a href="http://docs.openstack.org/developer/manila/devref/index.html#share-backends">Múltiples "backends"</a></li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Bare metal</h3>
+	    <ul>
+	      <li>Gestión de servidores físicos</li>
+	      <li>Ironic</li>
+	      <li>Instalación y configuración automática de servidores físicos</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Big Data</h3>
+	    <ul>
+	      <li>Sahara</li>
+	      <li>Hadoop, Hortonworks, Spark, etc.</li>
+	      <li>Se integran cargas con heat y nova</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Contenedores</h3>
+	    <ul>
+	      <li>Magnum</li>
+	      <li>Docker, Rocket?</li>
+	      <li>Kubernetes, Swarm?</li>
+	      <li>Gestión automatizada de máquinas virtuales o físicas que ejecutan contenedores</li> 
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>HPC?</h3>
+	    <p><a href="http://www.snia.org/sites/default/files/CSI/OpenStack_HPC_Final.pdf">High Performance Computing OpenStack Options</a></p>
+	  </section>
+	  <!-- <section> -->
+	  <!--   <h3>SR-IOV</h3> -->
+	  <!--   <ul> -->
+	  <!--     <li><a href="https://www.openstack.org/marketplace/drivers/">Drivers</li> -->
+	      
+	</section>
+	<!-- <section> -->
+	<!--   <section> -->
+	<!--     <h3>OpenStack in action</h3> -->
+	<!--   </section> -->
+	<!--   <section> -->
+	<!--     <h3>Basic Concepts</h3> -->
+	<!--     <ul> -->
+	<!--       <li>Image: Preconfigured OS image ready to be -->
+	<!-- 	launched</li> -->
+	<!--       <li>Instance: Virtual machine that runs inside the -->
+	<!-- 	cloud</li> -->
+	<!--       <li>Flavor: Virtual machine specs (RAM, vCPUs, ...)</li> -->
+	<!--       <li>Fixed IP: IP assigned when instance is launched and -->
+	<!-- 	used for communication between instances</li> -->
+	<!--       <li>Floating IP: Optional IP used for communication with -->
+	<!-- 	networks outside the cloud</li> -->
+	<!--       <li>Security group: Firewall rules associated to an -->
+	<!-- 	instance</li> -->
+	<!--     </ul> -->
+	<!--   </section> -->
+	<!--   <section> -->
+	<!--     <h3>OpenStack at IES Gonzalo Nazareno</h3> -->
+	<!--   </section> -->
+	<!--   <section> -->
+	<!--     <h3>Using OpenStack</h3> -->
+	<!--     <ul> -->
+	<!--       <li><a href="https://albertomolina.wordpress.com/2013/11/20/how-to-launch-an-instance-on-openstack-i-horizon/">https://albertomolina.wordpress.com/2013/11/20/how-to-launch-an-instance-on-openstack-i-horizon/</a></li> -->
+	<!--       <li><a href="https://albertomolina.wordpress.com/2013/11/20/how-to-launch-an-instance-on-openstack-ii-openstack-cli/">https://albertomolina.wordpress.com/2013/11/20/how-to-launch-an-instance-on-openstack-ii-openstack-cli/</a></li> -->
+	<!--       <li><a href="https://albertomolina.wordpress.com/2013/11/20/how-to-launch-an-instance-on-openstack-iii-python-novaclient-library/">https://albertomolina.wordpress.com/2013/11/20/how-to-launch-an-instance-on-openstack-iii-python-novaclient-library/</a></li> -->
+	<!--     </ul> -->
+	<!--   </section> -->
+	<!-- </section> -->
+
+	<section>
+	  <section>
+	    <h3>Administración de OpenStack</h3>
+	    <ul>
+	      <li>La principal responsabilidad de un administrador de
+	      sistemas es mantener las aplicaciones funcionando
+	      correctamente y no perder jamás los datos</li>
+	      <li>Dos perfiles claramente diferentes:
+		<ul>
+		  <li>"Administrador de las aplicaciones en nube":
+		Despliega y mantiene las aplicaciones funcionado sobre
+		infraestructura en nube</li>
+		  <li>"Administrador de IaaS": Maneja la
+		    plataforma de IaaS</li>
+	      </ul></li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Administrador de las aplicaciones en nube</h3>
+	    <ul>
+	      <li>Común a nube privada o pública</li>
+	      <li>Conocimiento amplio de los recursos de la nube</li>
+	      <li>REST APIs</li>
+	      <li>Orquestación: Cloudformation y Heat</li>
+	      <li>Gestión y transformación de imágenes</li>
+	      <li>Ciclo de vida de instancias</li>
+	      <li>Almacenamiento de objetos</li>
+	      <li>Almacenamiento de bloques</li>
+	      <li>Contenedores</li>
+	      <li>Monitorización, automatización y gestión de la configuración</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Administrador de IaaS</h3>
+	    <ul>
+	      <li>No para juniors ;)</li>
+	      <li>Conocimiento profundo de las tecnologías
+		subyacentes: virtualización, redes y almacenamiento</li>
+	      <li>Conocimiento profundo de los componentes del
+	      software IaaS</li>
+	      <li>Monitorización, automatización y gestión de la configuración</li>
+	    </ul>
+	  </section>
+	</section>
+      </div>
+    </div>
+
+    <script src="reveal.js/lib/js/head.min.js"></script>
+    <script src="reveal.js/js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+      // Optional reveal.js plugins
+      dependencies: [
+      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+      { src: 'reveal.js/plugin/notes/notes.js', async: true }
+      ]
+      });
+
+    </script>
+
+  </body>
+</html>
