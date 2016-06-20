@@ -35,19 +35,16 @@
   </head>
 
   <body>
-
     <div class="reveal">
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
 	<section>
 	  <h2>Seminario de actualización en OpenStack</h2>
 	  <p><a href="http://albertomolina.wordpress.com">Alberto Molina Coballes</a></p>
-	  <p>IES Gonzalo Nazareno</p>
-	  <p>
-	    <a href="http://bn-cloud.com/">
+	  <p>Organizado por <a href="http://bn-cloud.com/">
 	      <img src="img/logohome_0_0.png" width="100px" class="plain"/></a>
 	  </p>
-	  <p><small>Sevilla, 21 de Junio de 2016</small></p>
+	  <p><small>Sevilla, 27 de Junio de 2016</small></p>
 	  <p><small>Theme by: <a href="http://lab.hakim.se/reveal-js/#/">reveal.js</a></small></p>
 	  
 	</section>
@@ -59,14 +56,16 @@
 	    <a href="img/old-new.png">
 	      <img src="img/old-new.png" class="plain" width="500px" />
 	    </a>
-	    <a href="http://www.slideshare.net/cdaffara/economics-of-public-and-private-clouds">Carlo
-	      Daffara - Economics of public and private clouds</a>
+	    <p><small><a href="http://www.slideshare.net/cdaffara/economics-of-public-and-private-clouds">Carlo
+		  Daffara - Economics of public and private clouds</a></small></p>
 	  </section>
 	  <section>
-	    <h2>¿aplicaciones nativas cloud?¿hoy en día?
-	      <a href="https://www.youtube.com/watch?v=lddtWUP_IKQ">
-		High Availability for Pets and Hypervisors - State of The Nation
-	      </a>
+	    <h3>¿aplicaciones nativas cloud hoy en día?</h3>
+	    <ul>
+	      <li>nova-compute HA</li>
+	      <li><a href="http://aspiers.github.io/openstack-summit-2016-austin-compute-ha/#/about">http://aspiers.github.io/openstack-summit-2016-austin-compute-ha/</a></li>
+	      <li><a href="https://www.youtube.com/watch?v=lddtWUP_IKQ">High Availability for Pets and Hypervisors - State of The Nation</li>
+	    </ul>
 	  </section>
 	  <section>
 	    <h3>Will Containers Replace Hypervisors? Almost Certainly!</h3>
@@ -80,37 +79,28 @@
 	  </section>
 	  <section>
 	    <h3>¿k8s para todo?</h3>
-	      <p><small>Interesante hilo con reflexiones en voz alta de un desarrollador de Kubernetes</small></p>
-	      <blockquote class="twitter-tweet" data-lang="es"><p lang="en" dir="ltr">Kubernetes is a great framework for building distributed systems, but that does not mean you
-													     need
-													     to
-													     use
-													     it
-													     for
-													     everything;
-													     or
-													     even
-													     at
-													     all.</p>&mdash;
-													     Kelsey
-													     Hightower 													   (@kelseyhightower) <a href="https://twitter.com/kelseyhightower/status/741306190139793408">10
-	      de junio de 2016</a></blockquote>
-	  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-	</section>
-	<section>
-	  <h3>Infrastructure Software is Dead</h3>
-	  <ul>
-	    <li>OpenStack no es un producto listo para usar</li>
-	    <li>Difícil de configurar, actualizar o modificar</li>
-	    <li>El modelo de negocios es servicios sobre OpenStack</li>
-	  </ul>
-	  <p><small><a href="https://www.mirantis.com/blog/infrastructure-software-is-dead" />Boris Renski - Infrastructure Software is Dead</a></small></p>
-	<section>
-	  <section>
-	    <h3 >Evolución de la infraestructura</h3>
+	    <p><small>Interesante hilo con reflexiones de un desarrollador de Kubernetes</small></p>
+	    <blockquote class="twitter-tweet" data-lang="es"><p lang="en" dir="ltr">Kubernetes is a great framework for building distributed systems, but that does not mean you need to use it for everything; or even at all.</p>&mdash; Kelsey Hightower (@kelseyhightower) <a href="https://twitter.com/kelseyhightower/status/741306190139793408">10 de junio de 2016</a></blockquote>
+	    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 	  </section>
 	  <section>
-	    <h3>Evolución de la infraestructura</h3>
+	    <h3>Infrastructure Software is Dead</h3>
+	    <ul>
+	      <li>OpenStack no es un producto listo para usar</li>
+	      <li>Difícil de configurar, actualizar o modificar</li>
+	      <li>El modelo de negocios es servicios sobre OpenStack</li>
+	    </ul>
+	    <p>
+	      <small>
+		<a href="https://www.mirantis.com/blog/infrastructure-software-is-dead">Boris Renski - Infrastructure Software is Dead</a></small></p>
+	  </section>
+	</section>
+	<section>  
+  <section>
+    <h3 >Evolución de la infraestructura</h3>
+  </section>
+  <section>
+    <h3>Evolución de la infraestructura</h3>
 	    <h4>¿Qué es infrastructura?</h4>
 	    <p>Procesadores, redes y equipos para almacenamiento de datos</p>
 	    <h4>Evolución</h4>
@@ -784,11 +774,6 @@
 	      software IaaS</li>
 	      <li>Monitorización, automatización y gestión de la configuración</li>
 	    </ul>
-	  </section>
-	</section>
-	<section>
-	  <section>
-	  <h2>Un poco de visión global</h2>
 	  </section>
 	</section>
       </div>
