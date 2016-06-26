@@ -103,7 +103,7 @@
 	</section>
 	<section>
 	  <section>
-	    <h3>Casos de uso</h3>
+	    <h3>OpenStack. Casos de uso</h3>
 	  </section>
 	  <section>
 	    <h3>Virtualización 2.0</h3>
@@ -111,7 +111,7 @@
 	      <li>Gestión ágil y automatizada de máquinas virtuales</li>
 	      <li>Mediante GUI, CLI o API</li>
 	      <li>Glance, Nova y Horizon</li>
-	      <li>El usuario puede gestionar su infraestructura</li>
+	      <li>El usuario puede gestionar su propia infraestructura</li>
 	      <li>Escenarios automáticos mediante plantillas (heat)</li>
 	      <li>Aplicaciones distribuidas y "nativas" cloud</li>
 	      <li>Regiones, zonas, agregados, celdas, afinidad/anti-afinidad, ...</li>
@@ -124,6 +124,7 @@
 	      <li>API extremadamente simple</li>
 	      <li>Swift o Ceph</li>
 	      <li>Almacenamiento distribuido, con redundancia y muy escalable</li>
+	      <li>Muy adecuado cloud híbrido</li>
 	    </ul>
 	  </section>
 	  <section>
@@ -149,6 +150,9 @@
 	      <li>Manila</li>
 	      <li>Proyecto escindido de cinder</li>
 	      <li><a href="http://docs.openstack.org/developer/manila/devref/index.html#share-backends">Múltiples "backends"</a></li>
+	      <li>NAS: NFS, CIFS</li>
+	      <li>Sistemas de ficheros distribuidos: GlusterFS, CephFS</li>
+	      <li>HDFS (Haddop)</li>
 	    </ul>
 	  </section>
 	  <section>
@@ -280,74 +284,74 @@
 	<!--     alt="iaas-paas-saas" class="plain" /></a> -->
 	<!--     <p><small><a href="http://blogs.technet.com/b/kevinremde/archive/2011/04/03/saas-paas-and-iaas-oh-my-quot-cloudy-april-quot-part-3.aspx">Kevin Remde: SaaS, PaaS, and IaaS.. Oh my!</a></small></p> -->
 	<!--   </section> -->
-	  <section>
-	    <h3>¿Por qué una nube privada?</h3>
-	    <ul>
-	      <li>El software de gestión de nubes se está convirtiendo en un componente clave de los centros de datos</li>
-	      <li>Las nubes públicas están bien, pero ...</li>
-		<ul>
-		  <li>Privacidad, seguridad, control de los datos</li>
-		  <li>Vendor lock-in</li>
-		  <li>Personalización</li>
-		  <li>¿Rendimiento?</li>
-		  <li>¿Coste?</li>
-		</ul>
-	  </section>
-	  <section>
-	    <h3>Infrastructure as a Service</h3>
-	    <ul>
-	      <li>Nube pública IaaS: AWS, GCE y Azure. ¿Hay espacio para alguien más? ¿es esto lo que queremos?</li>
-	      <li>Nube privada: Plataformas de software libre</li>
-	    </ul>
-	  </section>
-	</section>
+	<!--   <section> -->
+	<!--     <h3>¿Por qué una nube privada?</h3> -->
+	<!--     <ul> -->
+	<!--       <li>El software de gestión de nubes se está convirtiendo en un componente clave de los centros de datos</li> -->
+	<!--       <li>Las nubes públicas están bien, pero ...</li> -->
+	<!-- 	<ul> -->
+	<!-- 	  <li>Privacidad, seguridad, control de los datos</li> -->
+	<!-- 	  <li>Vendor lock-in</li> -->
+	<!-- 	  <li>Personalización</li> -->
+	<!-- 	  <li>¿Rendimiento?</li> -->
+	<!-- 	  <li>¿Coste?</li> -->
+	<!-- 	</ul> -->
+	<!--   </section> -->
+	<!--   <section> -->
+	<!--     <h3>Infrastructure as a Service</h3> -->
+	<!--     <ul> -->
+	<!--       <li>Nube pública IaaS: AWS, GCE y Azure. ¿Hay espacio para alguien más? ¿es esto lo que queremos?</li> -->
+	<!--       <li>Nube privada: Plataformas de software libre</li> -->
+	<!--     </ul> -->
+	<!--   </section> -->
+	<!-- </section> -->
 	
-	<section>
-	  <section>
-	    <h3 >IaaS con software libre</h3>
-	  </section>
-	  <section>
-	    <h3>CloudStack</h3>
-	    <ul>
-	      <li>Inicialmente cloud.com</li>
-	      <li>Comprado por citrix en 2011</li>
-	      <li>Donado a la Apache Software Foundation en 2012</li>
-	      <li>Focalizado en la compatibilidad con AWS</li>
-	      <li>Ene 2016: Citrix vende CloudPlatform y CloudPortal a Accelerite</li>
-	      <li><a href="http://cloudstack.apache.org/">http://cloudstack.apache.org/</a></li>
-	    </ul>
-	  </section>
-	  <section>
-	    <h3>Eucalyptus</h3>
-	    <ul>
-	      <li>El proyecto más antiguo</li>
-	      <li>Focalizado en la compatibilidad con AWS</li>
-	      <li>Inicialmente licencia mixta (Open core)</li>
-	      <li>euca2ools: CLI compatible con AWS (libre)</li>
-	      <li>Desarrollado principalmente por Eucalyptus Systems</li>
-	      <li>En Sept. 2014 HP compra Eucalyptus Systems</li>
-	      <li><a href="http://www8.hp.com/us/en/cloud/helion-eucalyptus-overview.html">http://www8.hp.com/us/en/cloud/helion-eucalyptus-overview.html</a></li>
-	    </ul>
-	  </section>
-	  <section>
-	    <h3>OpenNebula</h3>
-	    <ul>
-	      <li>Data Center Virtualization Software</li>
-	      <li>Se postula como rival de VMware vCloud</li>
-	      <li>Compatible con AWS EC2 API</li>
-	      <li>OpenNebula Marketplace</li>
-	      <li><a href="http://opennebula.org/">http://opennebula.org/</a></li>
-	    </ul>
-	  </section>
-	  <section>
-	    <h3>Algunos datos sobre estos proyectos</h3>
-	    <p>Charla de Bitergia en el OpenStack Summit:</p>
-	    <ul>
-	      <li><a href="https://speakerdeck.com/jgbarah/the-numbers-of-the-open-cloud-tokyo-edition">https://speakerdeck.com/jgbarah/the-numbers-of-the-open-cloud-tokyo-edition</a></li>
-	      <li><a href="https://www.youtube.com/watch?v=jipTERrdt9E">https://www.youtube.com/watch?v=jipTERrdt9E</a></li>
-	    </ul>
-	  </section>
-	</section>
+	<!-- <section> -->
+	<!--   <section> -->
+	<!--     <h3 >IaaS con software libre</h3> -->
+	<!--   </section> -->
+	<!--   <section> -->
+	<!--     <h3>CloudStack</h3> -->
+	<!--     <ul> -->
+	<!--       <li>Inicialmente cloud.com</li> -->
+	<!--       <li>Comprado por citrix en 2011</li> -->
+	<!--       <li>Donado a la Apache Software Foundation en 2012</li> -->
+	<!--       <li>Focalizado en la compatibilidad con AWS</li> -->
+	<!--       <li>Ene 2016: Citrix vende CloudPlatform y CloudPortal a Accelerite</li> -->
+	<!--       <li><a href="http://cloudstack.apache.org/">http://cloudstack.apache.org/</a></li> -->
+	<!--     </ul> -->
+	<!--   </section> -->
+	<!--   <section> -->
+	<!--     <h3>Eucalyptus</h3> -->
+	<!--     <ul> -->
+	<!--       <li>El proyecto más antiguo</li> -->
+	<!--       <li>Focalizado en la compatibilidad con AWS</li> -->
+	<!--       <li>Inicialmente licencia mixta (Open core)</li> -->
+	<!--       <li>euca2ools: CLI compatible con AWS (libre)</li> -->
+	<!--       <li>Desarrollado principalmente por Eucalyptus Systems</li> -->
+	<!--       <li>En Sept. 2014 HP compra Eucalyptus Systems</li> -->
+	<!--       <li><a href="http://www8.hp.com/us/en/cloud/helion-eucalyptus-overview.html">http://www8.hp.com/us/en/cloud/helion-eucalyptus-overview.html</a></li> -->
+	<!--     </ul> -->
+	<!--   </section> -->
+	<!--   <section> -->
+	<!--     <h3>OpenNebula</h3> -->
+	<!--     <ul> -->
+	<!--       <li>Data Center Virtualization Software</li> -->
+	<!--       <li>Se postula como rival de VMware vCloud</li> -->
+	<!--       <li>Compatible con AWS EC2 API</li> -->
+	<!--       <li>OpenNebula Marketplace</li> -->
+	<!--       <li><a href="http://opennebula.org/">http://opennebula.org/</a></li> -->
+	<!--     </ul> -->
+	<!--   </section> -->
+	<!--   <section> -->
+	<!--     <h3>Algunos datos sobre estos proyectos</h3> -->
+	<!--     <p>Charla de Bitergia en el OpenStack Summit:</p> -->
+	<!--     <ul> -->
+	<!--       <li><a href="https://speakerdeck.com/jgbarah/the-numbers-of-the-open-cloud-tokyo-edition">https://speakerdeck.com/jgbarah/the-numbers-of-the-open-cloud-tokyo-edition</a></li> -->
+	<!--       <li><a href="https://www.youtube.com/watch?v=jipTERrdt9E">https://www.youtube.com/watch?v=jipTERrdt9E</a></li> -->
+	<!--     </ul> -->
+	<!--   </section> -->
+	<!-- </section> -->
 
 	<section>
 	  <section>
@@ -430,8 +434,7 @@
 	    <h3>Desarrollo colaborativo</h3>
 	    <ul>
 	      <li> <a href="http://bitergia.com/">Bitergia</a> realiza diferentes análisis sobre el desarrollo de OpenStack</li>
-	      <li><a href="http://blog.bitergia.com/2015/04/30/kilo-the-new-openstack-release/">Kilo:
-		  the new OpenStack release</a></li>
+	      <li><a href="https://blog.bitergia.com/2016/01/18/the-mitaka-openstack-mid-cycle-quarterly-report/">The Mitaka OpenStack mid-cycle quarterly report</a></li>
 	      <li><a href="http://activity.openstack.org/dash/browser/">OpenStack
 		  activity dashboard</a></li>
 	      <li><a href="https://6d8316ac574a2a54a69bb17a7d161ed6.us-east-1.aws.found.io/#/dashboard/OpenStack-Git-Activity-v2">OpenStack code contributions dashboard</a></li>
@@ -652,10 +655,12 @@
 	      <p><small><a href="http://www.cloudscaling.com/blog/openstack/vanilla-openstack-doesnt-exist-and-never-will/">Randy
 	      Bias - "Vanilla OpenStack" Doesn't Exist and Never Will</a></small></p>
 	    </section>
-	    <section>
-	      <h3>Arquitectura de OpenStack</h3>
-	      <p><a href="http://docs.openstack.org/mitaka/networking-guide/deploy.html">Deployment scenarios</a></p>
-	    </section>	  
+	</section>
+	<section>
+	  <section>
+	    <h3>Arquitectura de OpenStack</h3>
+	    <p><a href="http://docs.openstack.org/mitaka/networking-guide/deploy.html">Deployment scenarios</a></p>
+	  </section>	  
 	</section>
 	<section>
 	  <section>
