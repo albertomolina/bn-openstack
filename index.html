@@ -94,62 +94,152 @@
 	      <small>
 		<a href="https://www.mirantis.com/blog/infrastructure-software-is-dead">Boris Renski - Infrastructure Software is Dead</a></small></p>
 	  </section>
+	  <section>
+	    <h3>¿Serverless?</h3>
+	    <p><img src="img/serverless.png" /></p>
+	    <p><small><a href="https://read.acloud.guru/iaas-paas-serverless-the-next-big-deal-in-cloud-computing-34b8198c98a2#.c2xdbka90">Fuente:
+		  A brief history of cloud compute: IAAS, PAAS, serverless.</a></small></p>
+	  </section>
 	</section>
-	<section>  
-  <section>
-    <h3 >Evolución de la infraestructura</h3>
-  </section>
-  <section>
-    <h3>Evolución de la infraestructura</h3>
-	    <h4>¿Qué es infrastructura?</h4>
-	    <p>Procesadores, redes y equipos para almacenamiento de datos</p>
-	    <h4>Evolución</h4>
-	    <ol>
-	      <li>Servidores físicos</li>
-	      <li>Máquinas virtuales</li>
-	      <li>Infraestructura en nube</li>
-	    </ol>
+	<section>
+	  <section>
+	    <h3>Casos de uso</h3>
 	  </section>
 	  <section>
-	    <h3>Infraestructura tradicional</h3>
+	    <h3>Virtualización 2.0</h3>
 	    <ul>
-	      <li>Adquisición de equipos</li>
-	      <li>Montaje físico</li>
-	      <li>Conexión a red</li>
-	      <li>Instalación "manual" y configuración del SO</li>
-	      <li>Almacenamiento SAN o NAS</li>
-	      <li>Infraestructua estática</li>
-	      <li>Se mantienen las configuraciones durante años</li>
-	      <li>El usuario NO gestiona la infraestructura</li>
+	      <li>Gestión ágil y automatizada de máquinas virtuales</li>
+	      <li>Mediante GUI, CLI o API</li>
+	      <li>Glance, Nova y Horizon</li>
+	      <li>El usuario puede gestionar su infraestructura</li>
+	      <li>Escenarios automáticos mediante plantillas (heat)</li>
+	      <li>Aplicaciones distribuidas y "nativas" cloud</li>
+	      <li>Regiones, zonas, agregados, celdas, afinidad/anti-afinidad, ...</li>
 	    </ul>
 	  </section>
 	  <section>
-	    <h3>Máquinas virtuales</h3>
+	    <h3>Almacenamiento de objetos</h3>
 	    <ul>
-	      <li>Varias MVs por cada nodo físico</li>
-	      <li>MVs gestionadas por el hipervisor</li>
-	      <li>MVs conectadas a través de redes virtuales</li>
-	      <li>Sin cambios significativos en almacenamiento</li>
-	      <li>Gestión similar a los servidores físicos</li>
+	      <li>Usado ampliamente para el almacenamiento masivo en Internet</li>
+	      <li>API extremadamente simple</li>
+	      <li>Swift o Ceph</li>
+	      <li>Almacenamiento distribuido, con redundancia y muy escalable</li>
 	    </ul>
 	  </section>
 	  <section>
-	    <h3>Infraestructura en nube</h3>
+	    <h3>Almacenamiento de bloques</h3>
 	    <ul>
-	      <li>Máquinas virtuales</li>
-	      <li>Virtualización de redes</li>
-	      <li>Virtualización del almacenamiento</li>
-	      <li>Agrupamiento de recursos</li>
-	      <li>Infraestructura dinámica</li>
-	      <li>Configuración automática</li>
-	      <li>El usuario SÍ gestiona su infraestructura</li>
+	      <li>Equivale a una SAN</li>
+	      <li>Cinder</li>
 	    </ul>
+	  </section>
+	  <section>
+	    <h3>Virtualización de redes</h3>
+	    <ul>
+	      <li>Virtualización completa de la red de un CPD</li>
+	      <li>SDN</li>
+	      <li>Software Defined Datacenter</li>
+	      <li>NFV</li>
+	      <li>Neutron</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Sistemas de ficheros compartidos</h3>
+	    <ul>
+	      <li>Manila</li>
+	      <li>Proyecto escindido de cinder</li>
+	      <li><a href="http://docs.openstack.org/developer/manila/devref/index.html#share-backends">Múltiples "backends"</a></li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Bare metal</h3>
+	    <ul>
+	      <li>Gestión de servidores físicos</li>
+	      <li>Ironic</li>
+	      <li>Instalación y configuración automática de servidores físicos</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Big Data</h3>
+	    <ul>
+	      <li>Sahara</li>
+	      <li>Hadoop, Hortonworks, Spark, etc.</li>
+	      <li>Se integran cargas con heat y nova</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>Contenedores</h3>
+	    <ul>
+	      <li>Magnum</li>
+	      <li>Docker, Rocket?</li>
+	      <li>Kubernetes, Swarm?</li>
+	      <li>Gestión automatizada de máquinas virtuales o físicas que ejecutan contenedores</li> 
+	    </ul>
+	  </section>
+	  <section>
+	    <h3>HPC?</h3>
+	    <p><a href="http://www.snia.org/sites/default/files/CSI/OpenStack_HPC_Final.pdf">High Performance Computing OpenStack Options</a></p>
 	  </section>
 	  <!-- <section> -->
-	  <!--   <a href="img/esquema-iaas.png"><img src="img/esquema-iaas.png" -->
-	  <!--   alt="esquema IaaS" class="plain" /></a> -->
-	  <!-- </section> -->
+	  <!--   <h3>SR-IOV</h3> -->
+	  <!--   <ul> -->
+	  <!--     <li><a href="https://www.openstack.org/marketplace/drivers/">Drivers</li> -->
+	  
 	</section>
+	<!-- <section> -->
+  <!--   <h3 >Evolución de la infraestructura</h3> -->
+  <!-- </section> -->
+  <!-- <section> -->
+  <!--   <h3>Evolución de la infraestructura</h3> -->
+  <!-- 	    <h4>¿Qué es infrastructura?</h4> -->
+  <!-- 	    <p>Procesadores, redes y equipos para almacenamiento de datos</p> -->
+  <!-- 	    <h4>Evolución</h4> -->
+  <!-- 	    <ol> -->
+  <!-- 	      <li>Servidores físicos</li> -->
+  <!-- 	      <li>Máquinas virtuales</li> -->
+  <!-- 	      <li>Infraestructura en nube</li> -->
+  <!-- 	    </ol> -->
+  <!-- 	  </section> -->
+  <!-- 	  <section> -->
+  <!-- 	    <h3>Infraestructura tradicional</h3> -->
+  <!-- 	    <ul> -->
+  <!-- 	      <li>Adquisición de equipos</li> -->
+  <!-- 	      <li>Montaje físico</li> -->
+  <!-- 	      <li>Conexión a red</li> -->
+  <!-- 	      <li>Instalación "manual" y configuración del SO</li> -->
+  <!-- 	      <li>Almacenamiento SAN o NAS</li> -->
+  <!-- 	      <li>Infraestructua estática</li> -->
+  <!-- 	      <li>Se mantienen las configuraciones durante años</li> -->
+  <!-- 	      <li>El usuario NO gestiona la infraestructura</li> -->
+  <!-- 	    </ul> -->
+  <!-- 	  </section> -->
+  <!-- 	  <section> -->
+  <!-- 	    <h3>Máquinas virtuales</h3> -->
+  <!-- 	    <ul> -->
+  <!-- 	      <li>Varias MVs por cada nodo físico</li> -->
+  <!-- 	      <li>MVs gestionadas por el hipervisor</li> -->
+  <!-- 	      <li>MVs conectadas a través de redes virtuales</li> -->
+  <!-- 	      <li>Sin cambios significativos en almacenamiento</li> -->
+  <!-- 	      <li>Gestión similar a los servidores físicos</li> -->
+  <!-- 	    </ul> -->
+  <!-- 	  </section> -->
+  <!-- 	  <section> -->
+  <!-- 	    <h3>Infraestructura en nube</h3> -->
+  <!-- 	    <ul> -->
+  <!-- 	      <li>Máquinas virtuales</li> -->
+  <!-- 	      <li>Virtualización de redes</li> -->
+  <!-- 	      <li>Virtualización del almacenamiento</li> -->
+  <!-- 	      <li>Agrupamiento de recursos</li> -->
+  <!-- 	      <li>Infraestructura dinámica</li> -->
+  <!-- 	      <li>Configuración automática</li> -->
+  <!-- 	      <li>El usuario SÍ gestiona su infraestructura</li> -->
+  <!-- 	    </ul> -->
+  <!-- 	  </section> -->
+  <!-- 	  <\!-- <section> -\-> -->
+  <!-- 	  <\!--   <a href="img/esquema-iaas.png"><img src="img/esquema-iaas.png" -\-> -->
+  <!-- 	  <\!--   alt="esquema IaaS" class="plain" /></a> -\-> -->
+  <!-- 	  <\!-- </section> -\-> -->
+  <!-- 	</section> -->
 	<!-- <section> -->
 	<!--   <section> -->
 	<!--     <h3 >De la nube pública a la privada</h3> -->
@@ -190,12 +280,6 @@
 	<!--     alt="iaas-paas-saas" class="plain" /></a> -->
 	<!--     <p><small><a href="http://blogs.technet.com/b/kevinremde/archive/2011/04/03/saas-paas-and-iaas-oh-my-quot-cloudy-april-quot-part-3.aspx">Kevin Remde: SaaS, PaaS, and IaaS.. Oh my!</a></small></p> -->
 	<!--   </section> -->
-	  <section>
-	    <h3>¿Serverless?</h3>
-	    <p><img src="img/serverless.png" /></p>
-	    <p><small><a href="https://read.acloud.guru/iaas-paas-serverless-the-next-big-deal-in-cloud-computing-34b8198c98a2#.c2xdbka90">Fuente:
-		  A brief history of cloud compute: IAAS, PAAS, serverless.</a></small></p>
-	  </section>
 	  <section>
 	    <h3>¿Por qué una nube privada?</h3>
 	    <ul>
@@ -613,91 +697,6 @@
 	      <li>Commodity hardware</li>
 	    </ul>
 	  </section>
-	</section>
-	<section>
-	  <section>
-	    <h3>Casos de uso</h3>
-	  </section>
-	  <section>
-	    <h3>Virtualización 2.0</h3>
-	    <ul>
-	      <li>Gestión ágil y automatizada de máquinas virtuales</li>
-	      <li>Mediante GUI, CLI o API</li>
-	      <li>Glance, Nova y Horizon</li>
-	      <li>El usuario puede gestionar su infraestructura</li>
-	      <li>Escenarios automáticos mediante plantillas (heat)</li>
-	      <li>Aplicaciones distribuidas y "nativas" cloud</li>
-	      <li>Regiones, zonas, agregados, celdas, afinidad/anti-afinidad, ...</li>
-	    </ul>
-	  </section>
-	  <section>
-	    <h3>Almacenamiento de objetos</h3>
-	    <ul>
-	      <li>Usado ampliamente para el almacenamiento masivo en Internet</li>
-	      <li>API extremadamente simple</li>
-	      <li>Swift o Ceph</li>
-	      <li>Almacenamiento distribuido, con redundancia y muy escalable</li>
-	    </ul>
-	  </section>
-	  <section>
-	    <h3>Almacenamiento de bloques</h3>
-	    <ul>
-	      <li>Equivale a una SAN</li>
-	      <li>Cinder</li>
-	    </ul>
-	  </section>
-	  <section>
-	    <h3>Virtualización de redes</h3>
-	    <ul>
-	      <li>Virtualización completa de la red de un CPD</li>
-	      <li>SDN</li>
-	      <li>Software Defined Datacenter</li>
-	      <li>NFV</li>
-	      <li>Neutron</li>
-	    </ul>
-	  </section>
-	  <section>
-	    <h3>Sistemas de ficheros compartidos</h3>
-	    <ul>
-	      <li>Manila</li>
-	      <li>Proyecto escindido de cinder</li>
-	      <li><a href="http://docs.openstack.org/developer/manila/devref/index.html#share-backends">Múltiples "backends"</a></li>
-	    </ul>
-	  </section>
-	  <section>
-	    <h3>Bare metal</h3>
-	    <ul>
-	      <li>Gestión de servidores físicos</li>
-	      <li>Ironic</li>
-	      <li>Instalación y configuración automática de servidores físicos</li>
-	    </ul>
-	  </section>
-	  <section>
-	    <h3>Big Data</h3>
-	    <ul>
-	      <li>Sahara</li>
-	      <li>Hadoop, Hortonworks, Spark, etc.</li>
-	      <li>Se integran cargas con heat y nova</li>
-	    </ul>
-	  </section>
-	  <section>
-	    <h3>Contenedores</h3>
-	    <ul>
-	      <li>Magnum</li>
-	      <li>Docker, Rocket?</li>
-	      <li>Kubernetes, Swarm?</li>
-	      <li>Gestión automatizada de máquinas virtuales o físicas que ejecutan contenedores</li> 
-	    </ul>
-	  </section>
-	  <section>
-	    <h3>HPC?</h3>
-	    <p><a href="http://www.snia.org/sites/default/files/CSI/OpenStack_HPC_Final.pdf">High Performance Computing OpenStack Options</a></p>
-	  </section>
-	  <!-- <section> -->
-	  <!--   <h3>SR-IOV</h3> -->
-	  <!--   <ul> -->
-	  <!--     <li><a href="https://www.openstack.org/marketplace/drivers/">Drivers</li> -->
-	      
 	</section>
 	<!-- <section> -->
 	<!--   <section> -->
